@@ -9,7 +9,7 @@ import AddIcon from "@mui/icons-material/Add"
 export default function TopBar() {
   return (
     <Box sx={{flexGrow: 1}}>
-      <AppBar position="static" color="grey">
+      <AppBar color="" position="static">
         <Container>
           <Toolbar>
             <SearchBar />

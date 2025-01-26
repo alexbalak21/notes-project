@@ -6,16 +6,16 @@ import SearchIcon from "@mui/icons-material/Search"
 const Search = styled("div")(({theme}) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.black, 0.1),
+  backgroundColor: alpha(theme.palette.mode === "dark" ? theme.palette.common.white : theme.palette.common.black, 0.1),
   "&:hover": {
-    backgroundColor: alpha(theme.palette.common.black, 0.12),
+    backgroundColor: alpha(theme.palette.mode === "dark" ? theme.palette.common.white : theme.palette.common.black, 0.13),
   },
   marginRight: theme.spacing(2),
   marginLeft: 0,
-  width: "100%",
+  width: "80%", // Ensuring the Search component is 80% wide
   [theme.breakpoints.up("sm")]: {
     marginLeft: theme.spacing(3),
-    width: "100%",
+    width: "80%", // Ensuring the width is maintained for larger screens
   },
 }))
 
@@ -31,15 +31,12 @@ const SearchIconWrapper = styled("div")(({theme}) => ({
 
 const StyledInputBase = styled(InputBase)(({theme}) => ({
   color: "inherit",
+  width: "100%", // Ensure it spans the entire available width
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
+    width: "100%", // Ensure input occupies 100% of its container
   },
 }))
 

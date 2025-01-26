@@ -6,6 +6,8 @@ import {ThemeProvider, createTheme} from "@mui/material/styles"
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
+    bg: "",
+    fg: "#696969",
   },
 })
 
@@ -13,13 +15,15 @@ const lightTheme = createTheme({
   palette: {
     mode: "light",
     bg: "#f5f5f5",
-    fg: "red",
+    foreground: {
+      main: "#900000",
+    },
   },
 })
 
 const App = () => {
   return (
-    <ThemeProvider theme={lightTheme}>
+    <ThemeProvider theme={darkTheme}>
       <CssBaseline>
         <Box sx={{bgcolor: "bg", minHeight: "100vh"}}>
           <TopBar />
