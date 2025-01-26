@@ -3,6 +3,8 @@ import PropTypes from "prop-types"
 import Tabs from "@mui/material/Tabs"
 import Tab from "@mui/material/Tab"
 import Box from "@mui/material/Box"
+import MenuItem from "@mui/material/MenuItem"
+import Select from "@mui/material/Select"
 
 function TabPanel(props) {
   const {children, value, index, ...other} = props
@@ -34,6 +36,10 @@ export default function BasicTabs() {
     setValue(newValue)
   }
 
+  const handleSelectChange = (event) => {
+    setValue(event.target.value)
+  }
+
   return (
     <Box sx={{width: "100%"}}>
       <Box sx={{borderBottom: 1, borderColor: "divider"}}>
@@ -42,6 +48,15 @@ export default function BasicTabs() {
             <Tab key={index} label={`Item ${index + 1}`} {...a11yProps(index)} />
           ))}
         </Tabs>
+      </Box>
+      <Box sx={{my: 2, display: "flex", justifyContent: "center"}}>
+        <Select value={value} onChange={handleSelectChange} displayEmpty inputProps={{"aria-label": "Select Tab"}} sx={{minWidth: 120}}>
+          {Array.from({length: 20}, (_, index) => (
+            <MenuItem key={index} value={index}>
+              {`Item ${index + 1}`}
+            </MenuItem>
+          ))}
+        </Select>
       </Box>
       {Array.from({length: 20}, (_, index) => (
         <TabPanel key={index} value={value} index={index}>
