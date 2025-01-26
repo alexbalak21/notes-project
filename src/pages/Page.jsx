@@ -1,10 +1,12 @@
-import {Typography} from "@mui/material"
+import {Container, Typography} from "@mui/material"
 import React from "react"
+import TabPanel from "../components/TabPanel"
 
 export default function Page() {
   return (
-    <Typography variant="h4" color="red">
-      Page
-    </Typography>
+    <Container>
+      <Typography variant="h4">Page</Typography>
+      <TabPanel />
+    </Container>
   )
 }
