@@ -1,5 +1,4 @@
-import React from "react"
-import {BrowserRouter as Router, Routes, Route} from "react-router"
+import { Routes, Route} from "react-router"
 import {CssBaseline} from "@mui/material"
 import {ThemeProvider, createTheme} from "@mui/material/styles"
 import Home from "./pages/Home"
@@ -25,7 +24,7 @@ const lightTheme = createTheme({
 })
 
 const App = () => (
-  <ThemeProvider theme={lightTheme}>
+  <ThemeProvider theme={darkTheme}>
     <CssBaseline />
     <Routes>
       <Route path="/" element={<Home />} />
