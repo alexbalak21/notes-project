@@ -1,21 +1,49 @@
-import React from "react"
-import {Box, Container, Paper, Typography} from "@mui/material"
-import TopBar from "../components/TopBar"
+import React, { useState } from 'react';
+import { Box, Container, Grid, Paper, Typography } from '@mui/material';
+import TopBar from '../components/TopBar';
+import AddNote from '../components/AddNote';
 
-const Home = () => (
-  <Box sx={{bgcolor: "bg", minHeight: "100vh"}}>
-    <TopBar />
-    <Container>
-      <Typography variant="h4" color="foreground.main" sx={{padding: 2}}>
-        Welcome to the Home Page!
-      </Typography>
-      <Paper elevation={3} sx={{padding: 2}}>
-        <Typography variant="body1" color="text.primary">
-          Here's some content inside a Paper component.
-        </Typography>
-      </Paper>
-    </Container>
-  </Box>
-)
+const Home = () => {
+  const [notes, setNotes] = useState([]);
 
-export default Home
+  const handleAddNote = (newNote) => {
+    setNotes([...notes, { ...newNote, id: Date.now() }]);
+  };
+
+  return (
+    <Box sx={{ bgcolor: 'bg', minHeight: '100vh', pb: 8 }}>
+      <TopBar />
+      <Container maxWidth="lg" sx={{ mt: 4 }}>
+        <Grid container spacing={3}>
+          {notes.map((note) => (
+            <Grid item key={note.id} xs={12} sm={6} md={4}>
+              <Paper
+                elevation={2}
+                sx={{
+                  p: 2,
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  minHeight: '200px',
+                }}
+              >
+                <Typography variant="h6" component="h2" gutterBottom>
+                  {note.title}
+                </Typography>
+                <Typography variant="body1" sx={{ flexGrow: 1, whiteSpace: 'pre-line' }}>
+                  {note.content}
+                </Typography>
+                <Typography variant="caption" color="text.secondary" sx={{ mt: 1, alignSelf: 'flex-end' }}>
+                  {new Date(note.createdAt).toLocaleDateString()}
+                </Typography>
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+      <AddNote onAddNote={handleAddNote} />
+    </Box>
+  );
+};
+
+export default Home;
